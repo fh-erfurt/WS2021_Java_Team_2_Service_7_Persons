@@ -1,24 +1,27 @@
 package de.fherfurt.persons;
+import java.util.HashMap;
 
 public class CDeleting
 {
-    private Boolean inDelete;
     private int HashMapKey;
+    private HashMap<Integer, Integer>PersonsToDelete = new HashMap<>();
+    private int PersonID;
 
-    public CDeleting(Boolean inDelete, int HashMapKey) // Konstruktor
+    public CDeleting(int HashMapKey, int PersonID) // Konstruktor
     {
-        this.inDelete = inDelete;
+        this.PersonID = PersonID;
         this.HashMapKey = HashMapKey;
     }
 
-    void SearchHashMapKey()
+    // Die ID der zu löschenden Person wird in die Liste gesetzt damit später bekannt ist welche Personen endgültig gelöscht werden sollen
+    void setDeletedPerson()
     {
-
+        PersonsToDelete.put(this.HashMapKey, this.PersonID);
     }
 
-    void deleteHashMapKey()
+    // Sobald die Personen tatsächlich gelöscht wurden können diese aus dieser Liste entfertn werden
+    void removePersonFromTableToDelete()
     {
-
+       PersonsToDelete.remove(HashMapKey);
     }
-
 }

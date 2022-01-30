@@ -4,12 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 
-enum Faculty
+enum Faculty //schnittstelle
 {
-    AI, GE
+    GEAI,LAGAF,WLV,BKR,ASP,AS   //Abkürzungen der Fakultäten, diese sollen im Anschluss wieder aufgeschlüsselt werden
 }
 
-public class cInputSearch {
+public class CInputField {
     /*
         String Str = new String("Welcome to Tutorialspoint.com");
         System.out.print("Return Value :");
@@ -21,41 +21,88 @@ public class cInputSearch {
     private String inLastName;
     private String inModul;
     private Faculty inFaculty;  //enum
+    ArrayList<String> PersonInputData = new ArrayList<>();
 
-    ArrayList PersonInputData = new ArrayList();
-
-    public cInputSearch() // Konstruktor//String inFirstName, String inLastName, String inModul, de.fherfurt.persons.Faculty inFaculty
+    public CInputField(String inFirstName, String inLastName, String inModul, Faculty inFaculty ) // Konstruktor String inFirstName, String inLastName, String inModul, Faculty inFaculty
     {
         this.inFirstName    = inFirstName;
         this.inLastName     = inLastName;
         this.inModul        = inModul;
-        //this.inFaculty      = inFaculty;
+        this.inFaculty      = inFaculty;
     }
 
-    boolean setInputFaculty(String inFaculty)
-    {
-        //Methode --> prüft inFaculty == zu einem Enum Wert dazugehört
-        this.inFaculty = checkEnumValue();
-    }
-
-    void setListSearchInput()
-    {
-        PersonInputData.add(this.inFirstName);
-        PersonInputData.add(this.inLastName);
-        PersonInputData.add(this.inModul);
-        PersonInputData.add(this.inFaculty);
-    }
-
-    ArrayList getListSearchInput()
+    // get-Methode um Zugriff auf die Liste zu gestatten
+    ArrayList<String> getListSearchInput()
     {
         return PersonInputData;
     }
 
-
-    public boolean checkStringValid(String inStringToCheck)
+    // Hier wird die Methode zum checken der Strings auf die Attribute angewendet und beim erfolgreichen
+    // Check wird die Funktion zum Setzen der Daten in die Übergabeliste aufgerufen.
+    private boolean checkFieldInputValid()
     {
+        if    ((checkStringValid(this.inFirstName))
+            && (checkStringValid(this.inLastName))
+            && (checkStringValid(this.inModul)))
+        {
+            setListSearchInput();  //Parameter werden in die Liste gesetzt
+            return true;
+        }
+        return false;
+    }
 
-        String StringToCheck = inStringToCheck;
+
+    // Das Atteibut Faculty wird als Enum übergeben
+    // und dann über Switch-Case quasi in einen ausgeschrieben String umgewandelt und zurückgegeben
+    private String checkFacultyValid(Faculty inFaculty)
+    {
+        String result;
+        switch(inFaculty)
+        {
+            case GEAI:
+                result = "Gebäudetechnik und Informatik";
+            break;
+            case LAGAF:
+                result = "Landschaftsarchitektur, Gartenbau und Forst";
+            break;
+            case WLV:
+                result = "Wirtschaft-Logistik-Verkehr";
+            break;
+            case BKR:
+                result = "Bauingenieurwesen und Konservierung/Restaurierung";
+            break;
+            case ASP:
+                result = "Architektur und Stadtplanung";
+            break;
+            case AS:
+                result = "Angewandte Sozialwissenschaften";
+                break;
+
+            default:
+                System.out.println("Die eingegebene Fakultät existiert nicht oder ist falsch geschreiben");
+                result = " ";
+            break;
+
+        }
+        return result;
+    }
+
+
+
+    // Diese Funktion wird aufgerufen um die engültig geprüften Attribute in die Liste einzufügen
+    private void setListSearchInput()
+    {
+        PersonInputData.add(this.inFirstName);
+        PersonInputData.add(this.inLastName);
+        PersonInputData.add(this.inModul);
+        PersonInputData.add(checkFacultyValid(inFaculty)); // Enum wurde geprüft und passender String wird in die Liste eingetragen
+    }
+
+
+
+    // Strings werden auf Fehler wie Sonderzeichen oder Länge überprüft
+    public boolean checkStringValid(String StringToCheck)   // public damit auch andere auf die Checkfunktion zugreifen können
+    {
         char FirstCharacterOfTheString = StringToCheck.charAt(0);
 
         if (StringToCheck.length() > 30) {
@@ -68,7 +115,7 @@ public class cInputSearch {
             return false;
         }
 
-        if (StringToCheck == null || StringToCheck.trim().isEmpty())
+        if (StringToCheck.trim().isEmpty())
         {
             System.out.println("Die Zeichenkette hat ein falsches Format");
             return false;
@@ -86,27 +133,5 @@ public class cInputSearch {
 
         // inspiriert von folgender Quelle https://qastack.com.de/programming/1795402/check-if-a-string-contains-a-special-character
     }
+ }
 
-
-    boolean checkFieldInputValid()
-    {
-
-        // && ( checkStringValid(this.inFaculty) == true) => hier muss ein Enum vergleichen werden
-        if ((checkStringValid(this.inFirstName))  && ( checkStringValid(this.inLastName))  && ( checkStringValid(this.inModul)))
-        {
-            setListSearchInput();  //Wenn ja sollen dann Parameter in Liste getzt werden
-            return true;
-        }
-        //Bei return Angaben einer Methode auch bitte einen return zurück geben
-        return false;
-    }
-
-
-
-
-    public static void main(String[] args) {
-        cInputSearch SearchPerson = new cInputSearch();
-        SearchPerson.setInputFaculty("AI");
-    }
-
-}
