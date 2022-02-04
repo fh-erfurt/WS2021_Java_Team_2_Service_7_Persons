@@ -31,7 +31,7 @@ Hier wird die Zuständigkeit für die Benutzereingabe abgebildet, die Eingaben w
 Zum löschen eines Datensatzes gibt es eine Liste in die beim Löschvorgang eine Referenz zu der Person hinzugefügt wird. Somit kann später von Administratoren eine Liste aufgerufen werden durch die diese wissen welche Personen aus der Datenbank zu löschen sind.
 Bei der Anzeige der Suchergebnisse von Personen werden nach einem Abgleichen der Löschliste die jeweiligen gelöschten Personen und deren Daten nicht angezeigt, beziehungsweite wird eine Meldung angezeigt, welche besagt, dass der gesuchte Datensatz zu der Person nicht mehr existiert.
 
-### CPerson
+### Person
 
 Die Daten einer Person werden als Objekt der Klasse CPerson erzeugt, in einer Hashmap werden alle Attribute die für unseren Service von bedeutung sind gespeichert, auf diese Daten können von anderen Klassen aus über Setter und Getter zugegriffen werden.
 Desweiteren sind die Personen in Subklassen unterteilt, da die verschiedenen Personen unterschiedliche Attribute haben 
