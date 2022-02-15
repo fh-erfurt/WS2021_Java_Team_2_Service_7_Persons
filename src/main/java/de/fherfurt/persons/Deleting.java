@@ -1,4 +1,4 @@
-package de.fherfurt.persons;
+/*package de.fherfurt.persons;
 import java.util.HashMap;
 
 public class CDeleting
@@ -23,5 +23,22 @@ public class CDeleting
     void removePersonFromTableToDelete()
     {
        PersonsToDelete.remove(HashMapKey);
+    }
+}
+*/
+
+
+package de.fherfurt.persons;
+
+public class Deleting {
+
+    private final DeletedPersonsRepository deletedPersonsRepository = new DeletedPersonsRepository();
+
+    public Deleting() {
+    }
+
+    public void delete(int deletedPersonsRepositoryKey, int personNumber) {
+        DeletedPerson deletedPerson = DeletedPerson.builder().build();
+        deletedPersonsRepository.persist(deletedPerson);
     }
 }
