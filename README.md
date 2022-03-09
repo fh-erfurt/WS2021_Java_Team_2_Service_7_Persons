@@ -1,0 +1,2 @@
+#WS2021 - Java Service Persons (Team 2 - Gruppe 7)
+[![example workflow](https://github.com/fh-erfurt/WS2021_Java_Team_2_Service_7_Persons/actions/workflows/maven.yml/badge.svg)](https://github.com/fh-erfurt/WS2021_Java_Team_2_Service_7_Persons/actions)
