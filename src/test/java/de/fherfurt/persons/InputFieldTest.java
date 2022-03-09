@@ -50,6 +50,5 @@ class InputFieldTest
 
         Assertions.assertThat(InputField.checkStringValid(testStringD))
                 .isTrue();
-
     }
 }

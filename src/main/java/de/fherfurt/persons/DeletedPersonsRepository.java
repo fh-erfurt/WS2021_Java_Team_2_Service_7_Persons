@@ -5,6 +5,15 @@ public class DeletedPersonsRepository
 {
 
 
+    /**
+     * Leider ist dieser Ansatz zur Löschfunktionalität nach Absprache und
+     * Überarbeitung hinfällig, bleibt jedoch als Artefakt zu Dokumentationszwecken
+     * auskommentiert bestehen.
+     *
+     * @author Milena Neumann
+     */
+    /*
+
     private int deletedPersonsPointer = 0;
     protected final HashMap<Integer, Integer> deletedPersonStorage = new HashMap<>();  // Liste die gelöschte Personen enthält
 
@@ -50,5 +59,7 @@ public class DeletedPersonsRepository
         System.out.println(printList);
         return printList;
     }
+*/
+
 
 }

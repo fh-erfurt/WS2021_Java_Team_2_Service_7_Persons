@@ -4,18 +4,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 
-enum Faculty //schnittstelle
+enum Faculty
 {
-    GEAI,LAGAF,WLV,BKR,ASP,AS   //Abkürzungen der Fakultäten, diese sollen im Anschluss wieder aufgeschlüsselt werden
+    GEAI,LAGAF,WLV,BKR,ASP,AS
 }
 
+/**
+ * The InputField Class is the place where the Input from the searching user gets
+ * checked and put into a list for the Following service
+ *
+ * @ author Milena Neumann
+ */
 public class InputField
 {
 
     private String inFirstName;
     private String inLastName;
     private String inModul;
-    private Faculty inFaculty;  //enum
+    private Faculty inFaculty;
     ArrayList<String> PersonInputData = new ArrayList<>();
 
     public InputField(String inFirstName, String inLastName, String inModul, Faculty inFaculty ) // Konstruktor String inFirstName, String inLastName, String inModul, Faculty inFaculty
@@ -26,15 +32,21 @@ public class InputField
         this.inFaculty      = inFaculty;
     }
 
-    // get-Methode um Zugriff auf die Liste zu gestatten
-    ArrayList<String> getListSearchInput()
+    /**
+     * getter for comparing
+     * @return the data-list of person information
+     */
+    public ArrayList<String> getListSearchInput()
     {
         return PersonInputData;
     }
 
-
-    // Das Atteibut Faculty wird als Enum übergeben
-    // und dann über Switch-Case quasi in einen ausgeschrieben String umgewandelt und zurückgegeben
+    /**
+     * changes the Faculty shortcut to an out written string
+     *
+     * @param inFaculty the Faculty from the Input
+     * @return the changed faculty-name
+     */
     private String checkFacultyValid(Faculty inFaculty)
     {
         String result;
@@ -60,7 +72,7 @@ public class InputField
                 break;
 
             default:
-                System.out.println("Die eingegebene Fakultät existiert nicht oder ist falsch geschreiben");
+                System.out.println("Die eingegebene Fakultät existiert nicht oder ist falsch geschrieben");
                 result = " ";
             break;
 
@@ -69,8 +81,9 @@ public class InputField
     }
 
 
-
-    // Diese Funktion wird aufgerufen um die engültig geprüften Attribute in die Liste einzufügen
+    /**
+     * the checked and edit input from the user is added into the PersonInputDate-List
+     */
     public void setListSearchInput()
     {
         if    ((checkStringValid(this.inFirstName))
@@ -82,20 +95,32 @@ public class InputField
             PersonInputData.add(this.inModul);
             PersonInputData.add(checkFacultyValid(inFaculty)); // Enum wurde geprüft und passender String wird in die Liste eingetragen
         }
+        else
+        {
+            System.out.println("Bei der Eingabe ist etwas schiefgelaufen, bitte versuchen Sie es erneut");
+        }
     }
 
-
-    // Strings werden auf Fehler wie Sonderzeichen oder Länge überprüft
+    /**
+     * The function checks if there are some mistakes like not allowed special characters
+     *
+     * @param StringToCheck the input string which will be checked for different mistakes
+     * @return if the string is appropriate returns true, if there is a problem it returns false
+     *
+     * src https://qastack.com.de/programming/1795402/check-if-a-string-contains-a-special-character
+     */
     public static boolean checkStringValid(String StringToCheck)   // public damit auch andere auf die Checkfunktion zugreifen können
     {
         char FirstCharacterOfTheString = StringToCheck.charAt(0);
 
-        if (StringToCheck.length() > 30) {
-            System.out.println("Der eingegebene Name ist zu lang!");
+        if (StringToCheck.length() > 30)
+        {
+            System.out.println("Der eingegebene Name ist zu lang!\nErlaubte Anzahl an Zeichen: 30");
             return false;
         }
 
-        if (FirstCharacterOfTheString == ' ') {
+        if (FirstCharacterOfTheString == ' ')
+        {
             System.out.println("Das erste Zeichen darf kein Leerzeichen sein, bitte prüfen");
             return false;
         }
@@ -105,18 +130,17 @@ public class InputField
             System.out.println("Die Zeichenkette hat ein falsches Format");
             return false;
         }
-        Pattern p = Pattern.compile("[^A-Za-z0-9 -]");
+
+        Pattern p = Pattern.compile("[^A-Za-z -]");
         Matcher m = p.matcher(StringToCheck);
-        // boolean b = m.matches();
         boolean b = m.find();
+
         if (b)
         {
-            System.out.println("Es ist ein nicht erlaubtes Zeichen in der Eingabe");
+            System.out.println("Es ist ein nicht erlaubtes Zeichen in der Eingabe\n Erlaubte Zeichen sind: Großbuchstaben, Kleinbuchstaben, Leerzeichen und Bindestrich");
             return false;
         }
         return true;
-
-        // inspiriert von folgender Quelle https://qastack.com.de/programming/1795402/check-if-a-string-contains-a-special-character
     }
  }
 

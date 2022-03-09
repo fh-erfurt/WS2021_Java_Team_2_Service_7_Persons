@@ -3,15 +3,24 @@ package de.fherfurt.persons;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
+/**
+ * Leider sind die Tests für die vorherige Löschfunktionalität hinfälllig,
+ * da sie grundlegend verändert wurde, jedoch bleibt der Code für Dokumentationszwecke
+ * und als Entwicklungsschritt auskommentiert bestehen
+ *
+ * @author Milena Neumann
+ */
+/*
 class DeletedPersonsRepositoryTest
 {
 
     @Test
-    void ShouldPersist()
+    void shouldPersist()
     {
         //given
         DeletedPersonsRepository Test = new DeletedPersonsRepository();
-        //when
+        //whenangemessen
 
         for(int i=1; i<1000; i++)
         {
@@ -43,7 +52,7 @@ class DeletedPersonsRepositoryTest
     }
 
     @Test
-    void ShouldRemoveDeletedPerson()
+    void shouldRemoveDeletedPerson()
     {
         //given
         DeletedPersonsRepository Test = new DeletedPersonsRepository();
@@ -60,7 +69,7 @@ class DeletedPersonsRepositoryTest
     }
 
     @Test
-    void ShouldShowDeletedPersons()
+    void shouldShowDeletedPersons()
     {
         //given
         DeletedPersonsRepository Test = new DeletedPersonsRepository();
@@ -85,7 +94,7 @@ class DeletedPersonsRepositoryTest
     }
 
     @Test
-    void ShouldShowLargeAmountOfDeletedPersons()
+    void shouldShowLargeAmountOfDeletedPersons()
     {
         //given
         DeletedPersonsRepository Test = new DeletedPersonsRepository();
@@ -102,3 +111,4 @@ class DeletedPersonsRepositoryTest
                 .isNotEqualTo("3");
     }
 }
+*/
